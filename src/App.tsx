@@ -85,6 +85,8 @@ function App() {
         return;
       }
 
+      //if the previous letter is not equal to the selected letter
+      //set the current card visible
       if (previous.letter && previous?.letter !== letter) {
         setCards(
           cards.map((c) => {
@@ -96,6 +98,7 @@ function App() {
           })
         );
 
+        //then wait .5seconds and hide both cards
         setTimeout(() => {
           setCards(
             cards.map((c) => {
@@ -111,6 +114,8 @@ function App() {
             })
           );
         }, 500);
+
+        //set previous to undefined
         setPrevious(undefined);
       }
     }
