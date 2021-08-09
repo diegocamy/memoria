@@ -1,4 +1,5 @@
 import { GuessCard } from "../App";
+import { generateCards } from "../utils/generateCards";
 
 interface Props {
   setFinish: React.Dispatch<React.SetStateAction<boolean>>;
@@ -7,13 +8,9 @@ interface Props {
 
 function Finish({ setCards, setFinish }: Props) {
   const handleYes = () => {
-    const letters = "abcabc";
-    const mixedLetters = letters
-      .toUpperCase()
-      .split("")
-      .sort(() => Math.random() - Math.random());
+    const letters = generateCards();
     setCards(
-      mixedLetters.map((letter, index) => {
+      letters.map((letter, index) => {
         return {
           letter,
           guessed: false,

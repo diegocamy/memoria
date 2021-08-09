@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "./components/Card";
 import Finish from "./components/Finish";
+import { generateCards } from "./utils/generateCards";
 
 export interface GuessCard {
   letter: string;
@@ -15,13 +16,9 @@ function App() {
   const [finish, setFinish] = useState(false);
 
   useEffect(() => {
-    const letters = "abcabc";
-    const mixedLetters = letters
-      .toUpperCase()
-      .split("")
-      .sort(() => Math.random() - Math.random());
+    const letters = generateCards();
     setCards(
-      mixedLetters.map((letter, index) => {
+      letters.map((letter, index) => {
         return {
           letter,
           guessed: false,
@@ -123,6 +120,7 @@ function App() {
 
   return (
     <div className="wrapper">
+      <h2>Memoria</h2>
       {finish ? <Finish setFinish={setFinish} setCards={setCards} /> : null}
       <div className="cards-container">
         {cards.map((c) => (
